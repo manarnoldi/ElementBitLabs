@@ -1,0 +1,16 @@
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Domain\bin\Release\netstandard2.0\ElementBitLabApp.Domain.deps.json
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Domain\bin\Release\netstandard2.0\ElementBitLabApp.Domain.dll
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Domain\bin\Release\netstandard2.0\ElementBitLabApp.Domain.pdb
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Domain\bin\Release\netstandard2.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Domain\bin\Release\netstandard2.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Domain\bin\Release\netstandard2.0\System.ComponentModel.Annotations.dll
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Domain\bin\Release\netstandard2.0\Microsoft.Extensions.Identity.Core.xml
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Domain\bin\Release\netstandard2.0\Microsoft.Extensions.Identity.Stores.xml
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Domain\bin\Release\netstandard2.0\System.ComponentModel.Annotations.xml
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Domain\obj\Release\netstandard2.0\ElementBitLabApp.Domain.csprojAssemblyReference.cache
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Domain\obj\Release\netstandard2.0\ElementBitLabApp.Domain.csproj.CoreCompileInputs.cache
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Domain\obj\Release\netstandard2.0\ElementBitLabApp.Domain.AssemblyInfoInputs.cache
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Domain\obj\Release\netstandard2.0\ElementBitLabApp.Domain.AssemblyInfo.cs
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Domain\obj\Release\netstandard2.0\ElementBitLabApp.Domain.csproj.CopyComplete
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Domain\obj\Release\netstandard2.0\ElementBitLabApp.Domain.dll
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Domain\obj\Release\netstandard2.0\ElementBitLabApp.Domain.pdb

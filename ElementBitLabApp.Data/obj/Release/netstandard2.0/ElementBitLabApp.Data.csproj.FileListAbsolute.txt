@@ -1,0 +1,14 @@
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Data\bin\Release\netstandard2.0\ElementBitLabApp.Data.deps.json
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Data\bin\Release\netstandard2.0\ElementBitLabApp.Data.dll
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Data\bin\Release\netstandard2.0\ElementBitLabApp.Data.pdb
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Data\bin\Release\netstandard2.0\ElementBitLabApp.Domain.dll
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Data\bin\Release\netstandard2.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Data\bin\Release\netstandard2.0\ElementBitLabApp.Domain.pdb
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Data\bin\Release\netstandard2.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.xml
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Data\obj\Release\netstandard2.0\ElementBitLabApp.Data.csprojAssemblyReference.cache
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Data\obj\Release\netstandard2.0\ElementBitLabApp.Data.csproj.CoreCompileInputs.cache
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Data\obj\Release\netstandard2.0\ElementBitLabApp.Data.AssemblyInfoInputs.cache
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Data\obj\Release\netstandard2.0\ElementBitLabApp.Data.AssemblyInfo.cs
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Data\obj\Release\netstandard2.0\ElementBitLabApp.Data.csproj.CopyComplete
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Data\obj\Release\netstandard2.0\ElementBitLabApp.Data.dll
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp.Data\obj\Release\netstandard2.0\ElementBitLabApp.Data.pdb

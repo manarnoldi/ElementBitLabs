@@ -1,0 +1,135 @@
+﻿@model ElementBitLabApp.ViewModels.DowloadExcelSelectionViewModel
+
+<section id="horizontal">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title">Update Excel Data</h4>
+                    </div>
+                </div>
+                <div class="card-body collapse show">
+                    <div class="card-block card-dashboard">
+                        <form asp-controller="ExcelDatas" asp-action="UpdateExcelData" method="post" enctype="multipart/form-data">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="form-body">
+                                <h4 class="form-section">
+                                    <i class="icon-direction"></i> File Selection Details
+                                </h4>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="label-control">Customer Name</label>
+                                            <select asp-for="Customer" asp-items="ViewBag.Customers" class="form-control"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="label-control">Product Name</label>
+                                            <select asp-for="Product" asp-items="ViewBag.Products" class="form-control"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="label-control">Excel Data</label>
+                                            <select asp-for="ExcelName" asp-items="ViewBag.ExcelNames" class="form-control"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions right">
+                                <button type="submit" class="btn btn-success"><i class="icon-note"></i> Load Excel Data</button>
+                            </div>
+                        </form>
+
+                        <form asp-controller="ExcelDatas" asp-action="UpdateExcelDataToDatabase" method="post" enctype="multipart/form-data">
+                            <div class="form-actions right">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <table class="table display nowrap table-striped table-bordered scroll-horizontal">
+                                                @{  if (Model.ExcelDatas.Count <= 0)
+                                                    {
+
+                                                    } else {
+                                                        int maxRow = Model.ExcelDatas.Max(p => p.Row);
+                                                        int maxCol = Model.ExcelDatas.Max(p => p.Column);
+
+                                                        for (int i = 0; i < Model.ExcelDatas.Count; i++)
+                                                        {
+                                                            if (Model.ExcelDatas[i].Row == 0 || Model.ExcelDatas[i].Row == 2) { continue; }
+                                                            if (Model.ExcelDatas[i].Row == 1)
+                                                            {
+                                                                if (Model.ExcelDatas[i].Column == 0)
+                                                                {
+                                                                    @:<thead><tr><th>@Model.ExcelDatas[i].Value</th>
+                                                                }
+                                                                else if (Model.ExcelDatas[i].Column == maxCol)
+                                                                {
+                                                                   @:<th>@Model.ExcelDatas[i].Value</th></tr></thead><tbody><tr>
+                                                                }
+                                                                else
+                                                                {
+                                                                   @:<th>@Model.ExcelDatas[i].Value</th>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                if (Model.ExcelDatas[i].Column == maxCol)
+                                                                {
+                                                                    if (!Model.ExcelDatas[i].ReadOnly)
+                                                                    {
+                                                                        @:<td>@Model.ExcelDatas[i].Value</td></tr>
+                                                                        if (Model.ExcelDatas[i].Row != maxRow)
+                                                                        {
+                                                                            @:<tr>
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <td><input asp-for="@Model.ExcelDatas[i].Value" class="form-control"/></td>@:</tr>
+                                                                        if (Model.ExcelDatas[i].Row != maxRow)
+                                                                        {
+                                                                            @:<tr>
+                                                                        }
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    if (!Model.ExcelDatas[i].ReadOnly)
+                                                                    {
+                                                                        @:<td>@Model.ExcelDatas[i].Value</td>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <td><input asp-for="@Model.ExcelDatas[i].Value" class="form-control"/></td>
+                                                                    }
+                                                                }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-success"><i class="icon-note"></i> Save Loaded Data</button>
+                                        </div>
+                                    </div>
+                                </div>                                                               
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,65 @@
+﻿@model ElementBitLabApp.ViewModels.DowloadExcelSelectionViewModel
+
+<section id="horizontal-form-layouts">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2 class="content-header">Excel Download Form</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-warning">
+                        <h4 class="card-title" id="horz-layout-colored-controls">User Details</h4>
+                    </div>
+                    <p class="mb-0">
+                        This is a form for downloading user updated excel files.
+                    </p>
+                </div>
+                <div class="card-body">
+                    <div class="px-3">
+                        <form asp-controller="ExcelDatas" asp-action="DownLoadExcelData" method="post" enctype="multipart/form-data">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="form-body">
+                                <h4 class="form-section">
+                                    <i class="icon-direction"></i> File Selection Details
+                                </h4>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="label-control">Customer Name</label>
+                                            <select asp-for="Customer" asp-items="ViewBag.Customers" class="form-control"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="label-control">Product Name</label>
+                                            <select asp-for="Product" asp-items="ViewBag.Products" class="form-control"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="label-control">Excel Data</label>
+                                            <select asp-for="ExcelName" asp-items="ViewBag.ExcelNames" class="form-control"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions right">
+                                <button type="submit" class="btn btn-success"><i class="icon-note"></i> Download Excel Data</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

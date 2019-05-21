@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ElementBitLabApp.Data.ExcelData>
+
+<section id="horizontal">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title">Upload Excel Data</h4>
+                    </div>
+                </div>
+                <div class="card-body collapse show">
+                    <div class="card-block card-dashboard">
+                        <form asp-controller="ExcelDatas" asp-action="LoadUploadedData" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <fieldset class="form-group">
+                                        <input type="file" class="form-control-file" name="file" required>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="submit" class="btn btn-success" value="Load Data" />
+                                </div>
+                            </div>
+                        </form>
+                        <div>
+                            @Html.Raw(ViewBag.HtmlStr)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
