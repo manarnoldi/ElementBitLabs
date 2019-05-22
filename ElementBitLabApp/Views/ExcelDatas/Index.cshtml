@@ -1,5 +1,4 @@
-﻿@model IEnumerable<ElementBitLabApp.Data.ExcelData>
-
+﻿@model ElementBitLabApp.ViewModels.DowloadExcelSelectionViewModel
 <section id="horizontal">
     <div class="row">
         <div class="col-12">
@@ -19,12 +18,57 @@
                                     </fieldset>
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="submit" class="btn btn-success" value="Load Data" />
+                                    <input type="submit" class="btn btn-success" value="Load and Save Data" />
                                 </div>
                             </div>
                         </form>
                         <div>
-                            @Html.Raw(ViewBag.HtmlStr)
+                            <table class="table display nowrap table-striped table-bordered scroll-horizontal">
+                                @{  if (Model.ExcelDatas.Count <= 0)
+                                    {
+
+                                    } else {
+                                        int maxRow = Model.ExcelDatas.Max(p => p.Row);
+                                        int maxCol = Model.ExcelDatas.Max(p => p.Column);
+
+                                            for (int i = 0; i < Model.ExcelDatas.Count; i++)
+                                            {
+                                                if (Model.ExcelDatas[i].Row == 0 || Model.ExcelDatas[i].Row == 2) { continue; }
+                                                if (Model.ExcelDatas[i].Row == 1)
+                                                {
+                                                    if (Model.ExcelDatas[i].Column == 0)
+                                                    {
+                                                        @:<thead><tr><th>@Model.ExcelDatas[i].Value</th>
+                                                    }
+                                                    else if (Model.ExcelDatas[i].Column == maxCol)
+                                                    {
+                                                        @:<th>@Model.ExcelDatas[i].Value</th></tr></thead><tbody><tr>
+                                                    }
+                                                    else
+                                                    {
+                                                        @:<th>@Model.ExcelDatas[i].Value</th>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    if (Model.ExcelDatas[i].Column == maxCol)
+                                                    {
+                                                            @:<td>@Model.ExcelDatas[i].Value</td></tr>
+                                                            if (Model.ExcelDatas[i].Row != maxRow)
+                                                            {
+                                                                @:<tr>
+                                                            }
+                                                    }
+                                                    else
+                                                    {
+                                                            @:<td>@Model.ExcelDatas[i].Value</td>
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -32,3 +76,4 @@
         </div>
     </div>
 </section>
+

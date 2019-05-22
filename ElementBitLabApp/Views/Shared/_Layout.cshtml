@@ -53,7 +53,7 @@
         <link rel="stylesheet" href="~/css/site.min.css" />
     </environment>
 </head>
-<body data-col="2-columns" class=" 2-columns">
+<body data-col="2-columns" class=" 2-columns" ng-app="App">
     <div class="wrapper">
         <div data-active-color="white" data-background-color="black" data-image="~/../../../ConvexTemplate/app-assets/img/sidebar-bg/01.jpg" class="app-sidebar">
             <div class="sidebar-header">
@@ -76,33 +76,26 @@
                         <li class="has-sub nav-item">
                             <a href="#">
                                 <i class="icon-home"></i><span data-i18n="" class="menu-title">Dashboard</span>
-                                @*<span class="tag badge badge-pill badge-danger mt-1">2</span>*@
                             </a>
                         </li>
                         <li class="has-sub nav-item">
                             <a href="#"> <i class="icon-docs"></i><span data-i18n="" class="menu-title">User Actions</span> </a>
                             <ul class="menu-content">
-                                @*<li> <a class="menu-item" asp-controller="" asp-action="">Update Password</a> </li>*@
                                 <li> <a class="menu-item" asp-controller="ExcelDatas" asp-action="UpdateExcelData">Update Excel Data</a> </li>
-                                @*<li> <a href="vertical-timeline-page.html" class="menu-item">Vertical Timeline</a> </li>
-                                    <li> <a href="login-page.html" class="menu-item">Login</a> </li>
-                                    <li> <a href="register-page.html" class="menu-item">Register</a> </li>
-                                    <li> <a href="user-profile-page.html" class="menu-item">User Profile</a> </li>
-                                    <li> <a href="lock-screen-page.html" class="menu-item">Lock Screen</a> </li>*@
                             </ul>
                         </li>
-                        <li class="has-sub nav-item">
-                            <a href="#"> <i class="icon-docs"></i><span data-i18n="" class="menu-title">Administration</span> </a>
-                            <ul class="menu-content">
-                                <li><a class="menu-item" asp-area="Identity" asp-page="/Account/Register">Register User</a></li>
-                                <li><a class="menu-item" asp-area="Identity" asp-page="/Account/ResetPassword">Reset UserPassword</a></li>
-                                <li><a class="menu-item" asp-controller="ExcelDatas" asp-action="Index">UploadExcel</a></li>
-                                <li><a class="menu-item" asp-controller="ExcelDatas" asp-action="DownLoadExcelData">Download Excel</a> </li>
-                                @*<li> <a href="register-page.html" class="menu-item">Register</a> </li>
-                                    <li> <a href="user-profile-page.html" class="menu-item">User Profile</a> </li>
-                                    <li> <a href="lock-screen-page.html" class="menu-item">Lock Screen</a> </li>*@
-                            </ul>
-                        </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="has-sub nav-item">
+                                <a href="#"> <i class="icon-docs"></i><span data-i18n="" class="menu-title">Administration</span> </a>
+                                <ul class="menu-content">
+                                    <li><a class="menu-item" asp-area="Identity" asp-page="/Account/Register">Register User</a></li>
+                                    <li><a class="menu-item" asp-area="Identity" asp-page="/Account/ResetPassword">Reset UserPassword</a></li>
+                                    <li><a class="menu-item" asp-controller="ExcelDatas" asp-action="Index">UploadExcel</a></li>
+                                    <li><a class="menu-item" asp-controller="ExcelDatas" asp-action="DownLoadExcelData">Download Excel</a> </li>
+                                </ul>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -124,10 +117,6 @@
                         <i class="ft-maximize blue-grey darken-4 toggleClass"></i>
                         <p class="d-none">fullscreen</p>
                     </a>
-                    @*<a class="ml-2 display-inline-block">
-                        <i class="ft-shopping-cart blue-grey darken-4"></i>
-                        <p class="d-none">cart</p>
-                    </a>*@
                 </div>
                 <div class="navbar-container">
                     <div id="navbarSupportedContent" class="collapse navbar-collapse">
@@ -161,6 +150,7 @@
         <environment include="Development">
             <!-- BEGIN VENDOR JS-->
             <script src="~/ConvexTemplate/app-assets/vendors/js/core/jquery-3.3.1.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
             <script src="~/ConvexTemplate/app-assets/vendors/js/core/popper.min.js"></script>
             <script src="~/ConvexTemplate/app-assets/vendors/js/core/bootstrap.min.js"></script>
             <script src="~/ConvexTemplate/app-assets/vendors/js/perfect-scrollbar.jquery.min.js"></script>
@@ -182,12 +172,14 @@
             <!-- BEGIN PAGE LEVEL JS-->
             <script src="~/ConvexTemplate/app-assets/js/dashboard-analytics.js"></script>
             <!-- END PAGE LEVEL JS-->
-
+            <script type="text/javascript" src="~/js/utils.js"></script>
+            <script type="text/javascript" src="~/js/exceldatascreate.js"></script>
             <script src="~/js/site.js" asp-append-version="true"></script>
         </environment>
         <environment exclude="Development">
             <!-- BEGIN VENDOR JS-->
             <script src="~/ConvexTemplate/app-assets/vendors/js/core/jquery-3.3.1.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
             <script src="~/ConvexTemplate/app-assets/vendors/js/core/popper.min.js"></script>
             <script src="~/ConvexTemplate/app-assets/vendors/js/core/bootstrap.min.js"></script>
             <script src="~/ConvexTemplate/app-assets/vendors/js/perfect-scrollbar.jquery.min.js"></script>
@@ -209,6 +201,8 @@
             <!-- BEGIN PAGE LEVEL JS-->
             <script src="~/ConvexTemplate/app-assets/js/dashboard-ecommerce.js"></script>
             <!-- END PAGE LEVEL JS-->
+            <script type="text/javascript" src="~/js/utils.js"></script>
+            <script type="text/javascript" src="~/js/exceldatascreate.js"></script>
             <script src="~/js/site.min.js" asp-append-version="true"></script>
         </environment>
         @RenderSection("Scripts", required: false)

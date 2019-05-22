@@ -29,46 +29,42 @@ namespace ElementBitLabApp.Controllers
             _context = context;
         }
 
-        // GET: ExcelDatas
-        public async Task<IActionResult> Index()
+        public ActionResult GetCustomers()
         {
-            var applicationDbContext = _context.ExcelDatas.Include(e => e.ApplicationUser);
-            return View(await applicationDbContext.ToListAsync());
+            var list = _context.ExcelDatas.Select(c => c.CustomerName).Distinct().ToList();
+            return Json(list);
+        }
+
+        public ActionResult GetProducts()
+        {
+            return Json(_context.ExcelDatas.Select(c => c.ProductName).Distinct());
+        }
+
+        public ActionResult GetExcelTitles()
+        {
+            return Json(_context.ExcelDatas.Select(c => c.ExcelTitle).Distinct());
+        }
+
+        // GET: ExcelDatas
+        public IActionResult Index()
+        {
+            DowloadExcelSelectionViewModel model = new DowloadExcelSelectionViewModel();
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult UpdateExcelDataToDatabase(DowloadExcelSelectionViewModel exceldatas)
+        public IActionResult UpdateExcelDataToDatabase(IFormCollection FormData)
         {
             //var datatables = viewmodel.ExcelDatas.ToList();
             var dataTable = excelDatas;
             return RedirectToAction("Index");
         }
 
-        public IActionResult UpdateExcelData()
-        {           
-            ViewData["Customers"] = new SelectList(_context.ExcelDatas.Select(c => c.CustomerName).Distinct());
-            ViewData["Products"] = new SelectList(_context.ExcelDatas.Select(c => c.ProductName).Distinct());
-            ViewData["ExcelNames"] = new SelectList(_context.ExcelDatas.Select(c => c.ExcelTitle).Distinct());
-            DowloadExcelSelectionViewModel model = new DowloadExcelSelectionViewModel();
-            return View("Create", model);
-        }
-
-        [HttpPost]
-        public IActionResult UpdateExcelData(DowloadExcelSelectionViewModel exceldatas)
+        public ActionResult UpdateExcelData(string excelName)
         {
-            List<ExcelData> excelDatas = _context.ExcelDatas.Where(t => t.ExcelTitle == exceldatas.ExcelName)
-                .OrderBy(p => p.Column).OrderBy(r => r.Row).ToList();
-
-            ViewData["Customers"] = new SelectList(_context.ExcelDatas.Select(c => c.CustomerName).Distinct());
-            ViewData["Products"] = new SelectList(_context.ExcelDatas.Select(c => c.ProductName).Distinct());
-            ViewData["ExcelNames"] = new SelectList(_context.ExcelDatas.Select(c => c.ExcelTitle).Distinct());
-            DowloadExcelSelectionViewModel model = new DowloadExcelSelectionViewModel();
-            model.Product = exceldatas.Product;
-            model.Customer = exceldatas.Customer;
-            model.ExcelName = exceldatas.ExcelName;
-            model.ExcelDatas = excelDatas;
-            //ViewBag.HtmlStr = sb.ToString();
-            return View("Create", model);
+            List<ExcelData> excelDatas = _context.ExcelDatas.Where(t => t.ExcelTitle == excelName)
+                .OrderBy(p => p.Column).OrderBy(r => r.Row).ToList();            
+            return Json(excelDatas);
         }
 
         public IActionResult DownLoadExcelData()
@@ -92,6 +88,7 @@ namespace ElementBitLabApp.Controllers
             string URL = string.Format("{0}://{1}/{2}", Request.Scheme, Request.Host, sFileName);
 
             var memory = new MemoryStream();
+            
             using (var fs = new FileStream(Path.Combine(sWebRootFolder, sFileName), FileMode.Create, FileAccess.Write))
             {
                 excelDatas = excelDatas.OrderBy(p => p.Column).OrderBy(p => p.Row).ToList();
@@ -140,7 +137,7 @@ namespace ElementBitLabApp.Controllers
             string[] currentName = file.FileName.Split(".");
             string fileName = currentName[currentName.Length - 2] + '_' + currentTimeStamp + '.' + currentName[currentName.Length - 1];
             StringBuilder sb = new StringBuilder();
-
+            excelDatas = new List<ExcelData>();
             if (!Directory.Exists(newPath))
             {
                 Directory.CreateDirectory(newPath);
@@ -167,96 +164,36 @@ namespace ElementBitLabApp.Controllers
 
                     IRow headerRow = sheet.GetRow(0);
                     int cellCount = headerRow.LastCellNum;
-                    excelDatas = new List<ExcelData>();
 
                     for (int i = sheet.FirstRowNum; i <= sheet.LastRowNum; i++)
                     {
-
                         IRow row = sheet.GetRow(i);
                         for (int j = row.FirstCellNum; j < cellCount; j++)
                         {
-                            ExcelData excelData = new ExcelData();
-                            excelData.Row = i;
-                            excelData.Column = j;
-                            excelData.Value = GetCellValue(row.GetCell(j));
-                            excelData.ExcelTitle = fileName;
-                            excelData.ProductName = "Product";
-                            excelData.CustomerName = "Customer";
-                            excelData.ApplicationUserId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                            excelData.ModifiedDate = DateTime.Now;
-                            excelData.Edited = false;
-                            string readonly1 = sheet.GetRow(2).GetCell(j).ToString().ToLower();
-                            excelData.ReadOnly = Convert.ToBoolean(readonly1);
-                            excelDatas.Add(excelData);
+                            var exceldt = new ExcelData()
+                            {
+                                Row = i,
+                                Column = j,
+                                Value = GetCellValue(row.GetCell(j)),
+                                ExcelTitle = fileName,
+                                ProductName = "Product",
+                                CustomerName = "Customer",
+                                ApplicationUserId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier),
+                                ModifiedDate = DateTime.Now,
+                                Edited = false,
+                                ReadOnly = Convert.ToBoolean(sheet.GetRow(2).GetCell(j).ToString().ToLower())
+                            };
+                            excelDatas.Add(exceldt);
+                            _context.Add(exceldt);
                         }
                     }
+                    _context.SaveChanges();                    
                 }
             }
-            sb.Append("<table class=\"table display nowrap table-striped table-bordered scroll-horizontal\">");
-            excelDatas = excelDatas.OrderBy(p => p.Column).OrderBy(r => r.Row).ToList();
-            int maxRow = excelDatas.Max(p => p.Row);
-            int maxCol = excelDatas.Max(p => p.Column);
-
-            foreach (var item in excelDatas)
-            {
-                if (item.Row == 0 || item.Row == 2) continue;
-                if (item.Row == 1)
-                {
-                    if (item.Column == 0)
-                    {
-                        sb.Append("<thead><tr><th>" + item.Value + "</th>");
-                    }
-                    else if (item.Column == maxCol)
-                    {
-                        sb.Append("<th>" + item.Value + "</th></tr></thead><tbody><tr>");
-                    }
-                    else
-                    {
-                        sb.Append("<th>" + item.Value + "</th>");
-                    }
-                }
-                else
-                {
-                    if (item.Column == maxCol)
-                    {
-                        sb.Append("<td>" + item.Value + "</td></tr><tr>");
-                    }
-                    else
-                    {
-                        sb.Append("<td>" + item.Value + "</td>");
-                    }
-                    //if (item.Column == maxCol)
-                    //{
-                    //    if (!item.ReadOnly)
-                    //    {
-                    //        sb.Append("<td>" + item.Value + "</td></tr><tr>");
-                    //    } else
-                    //    {
-                    //        sb.Append("<td><input type='text' name='" + item.Row + item.Column + "' value='" + item.Value + "'></td></tr><tr>");
-                    //    }                        
-                    //}
-                    //else
-                    //{
-                    //    if(!item.ReadOnly)
-                    //    {
-                    //        sb.Append("<td>" + item.Value + "</td>");
-                    //    } else
-                    //    {
-                    //        sb.Append("<td><input type='text' name='" + item.Row + item.Column + "' value='" + item.Value + "'></td>");
-                    //    }                        
-                    //}
-                }
-            }
-            sb.Remove(sb.ToString().Length - 4, 4);
-            sb.Append("</tbody></table>");
-
-            foreach (var item in excelDatas)
-            {
-                _context.Add(item);
-            }
-            _context.SaveChangesAsync();
-            ViewBag.HtmlStr = sb.ToString();
-            return View("Index", excelDatas);
+            var vm = new DowloadExcelSelectionViewModel();
+            vm.ExcelDatas = excelDatas.OrderBy(p => p.Row).ToList();
+            
+            return View("Index", vm);
         }
 
         // GET: ExcelDatas/Details/5

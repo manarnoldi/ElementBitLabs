@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElementBitLabApp", "ElementBitLabApp\ElementBitLabApp.csproj", "{5E930B97-0C66-4550-979B-2408EA71C9CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElementBitLabApp", "ElementBitLabApp\ElementBitLabApp.csproj", "{5E930B97-0C66-4550-979B-2408EA71C9CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElementBitLabApp.Domain", "ElementBitLabApp.Domain\ElementBitLabApp.Domain.csproj", "{E4054BD6-5CA1-463A-9332-F9FA6AAE44E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElementBitLabApp.Domain", "ElementBitLabApp.Domain\ElementBitLabApp.Domain.csproj", "{E4054BD6-5CA1-463A-9332-F9FA6AAE44E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElementBitLabApp.Data", "ElementBitLabApp.Data\ElementBitLabApp.Data.csproj", "{FF64C13A-996F-4117-89EC-65807D76F1E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElementBitLabApp.Data", "ElementBitLabApp.Data\ElementBitLabApp.Data.csproj", "{FF64C13A-996F-4117-89EC-65807D76F1E9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElementBitLabApp.Tests", "ElementBitLabApp.Tests\ElementBitLabApp.Tests.csproj", "{66D04ACB-EEDC-4CB2-8239-A1B01F52EFB4}"
 EndProject

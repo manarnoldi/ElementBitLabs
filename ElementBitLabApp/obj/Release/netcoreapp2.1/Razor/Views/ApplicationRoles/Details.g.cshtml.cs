@@ -165,7 +165,7 @@ using ElementBitLabApp.Models;
             WriteLiteral("\r\n        </dd>\r\n    </dl>\r\n</div>\r\n<div>\r\n    ");
             EndContext();
             BeginContext(1165, 54, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "487b97f46e41437fbf152ff519aba5f4", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2e81dee358184ad88a92c7aec1b618e1", async() => {
                 BeginContext(1211, 4, true);
                 WriteLiteral("Edit");
                 EndContext();
@@ -200,7 +200,7 @@ using ElementBitLabApp.Models;
             WriteLiteral(" |\r\n    ");
             EndContext();
             BeginContext(1227, 38, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1602de08d9a74f7a96a083d231b5497f", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "eb29b13ec7ff4f02a2d26905650fa05b", async() => {
                 BeginContext(1249, 12, true);
                 WriteLiteral("Back to List");
                 EndContext();

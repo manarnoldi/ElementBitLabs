@@ -80,3 +80,4 @@ C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\Element
 C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp\obj\Release\netcoreapp2.1\ElementBitLabApp.csproj.CopyComplete
 C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp\obj\Release\netcoreapp2.1\ElementBitLabApp.dll
 C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp\obj\Release\netcoreapp2.1\ElementBitLabApp.pdb
+C:\Users\amwadwaa\documents\visual studio 2017\Projects\ElementBitLabApp\ElementBitLabApp\obj\Release\netcoreapp2.1\Razor\Areas\Identity\Pages\Account\Index.g.cshtml.cs
