@@ -25,6 +25,7 @@
         <link rel="stylesheet" type="text/css" href="~/ConvexTemplate/app-assets/vendors/css/perfect-scrollbar.min.css">
         <link rel="stylesheet" type="text/css" href="~/ConvexTemplate/app-assets/vendors/css/prism.min.css">
         <link rel="stylesheet" type="text/css" href="~/ConvexTemplate/app-assets/vendors/css/tables/datatable/datatables.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/handsontable@7.0.3/dist/handsontable.full.min.css" rel="stylesheet" media="screen">
 
         <link rel="stylesheet" type="text/css" href="~/ConvexTemplate/app-assets/css/app.css">
         <link rel="stylesheet" href="~/css/site.css" />
@@ -48,6 +49,7 @@
         <link rel="stylesheet" type="text/css" href="~/ConvexTemplate/app-assets/vendors/css/perfect-scrollbar.min.css">
         <link rel="stylesheet" type="text/css" href="~/ConvexTemplate/app-assets/vendors/css/prism.min.css">
         <link rel="stylesheet" type="text/css" href="~/ConvexTemplate/app-assets/vendors/css/tables/datatable/datatables.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/handsontable@7.0.3/dist/handsontable.full.min.css" rel="stylesheet" media="screen">
 
         <link rel="stylesheet" type="text/css" href="~/ConvexTemplate/app-assets/css/app.css">
         <link rel="stylesheet" href="~/css/site.min.css" />
@@ -81,7 +83,7 @@
                         <li class="has-sub nav-item">
                             <a href="#"> <i class="icon-docs"></i><span data-i18n="" class="menu-title">User Actions</span> </a>
                             <ul class="menu-content">
-                                <li> <a class="menu-item" asp-controller="ExcelDatas" asp-action="UpdateExcelData">Update Excel Data</a> </li>
+                                <li><a class="menu-item" asp-controller="ExcelUploads" asp-action="Index">Update Excel Data</a></li>
                             </ul>
                         </li>
                         @if (User.IsInRole("Admin"))
@@ -89,10 +91,9 @@
                             <li class="has-sub nav-item">
                                 <a href="#"> <i class="icon-docs"></i><span data-i18n="" class="menu-title">Administration</span> </a>
                                 <ul class="menu-content">
-                                    <li><a class="menu-item" asp-area="Identity" asp-page="/Account/Register">Register User</a></li>
-                                    <li><a class="menu-item" asp-area="Identity" asp-page="/Account/ResetPassword">Reset UserPassword</a></li>
-                                    <li><a class="menu-item" asp-controller="ExcelDatas" asp-action="Index">UploadExcel</a></li>
-                                    <li><a class="menu-item" asp-controller="ExcelDatas" asp-action="DownLoadExcelData">Download Excel</a> </li>
+                                    <li><a class="menu-item" asp-controller="Users" asp-action="Index">User Management</a></li>
+                                    @*<li><a class="menu-item" asp-area="Identity" asp-page="/Account/Register">Register User</a></li>*@
+                                    <li><a class="menu-item" asp-controller="ExcelUploads" asp-action="Index">UploadExcel</a></li>
                                 </ul>
                             </li>
                         }
@@ -150,7 +151,15 @@
         <environment include="Development">
             <!-- BEGIN VENDOR JS-->
             <script src="~/ConvexTemplate/app-assets/vendors/js/core/jquery-3.3.1.min.js"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.2.13/ng-file-upload.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.core.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.full.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/handsontable@7.0.3/dist/handsontable.full.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/ngHandsontable/0.13.0/ngHandsontable.min.js"></script>
+
             <script src="~/ConvexTemplate/app-assets/vendors/js/core/popper.min.js"></script>
             <script src="~/ConvexTemplate/app-assets/vendors/js/core/bootstrap.min.js"></script>
             <script src="~/ConvexTemplate/app-assets/vendors/js/perfect-scrollbar.jquery.min.js"></script>
@@ -172,14 +181,26 @@
             <!-- BEGIN PAGE LEVEL JS-->
             <script src="~/ConvexTemplate/app-assets/js/dashboard-analytics.js"></script>
             <!-- END PAGE LEVEL JS-->
-            <script type="text/javascript" src="~/js/utils.js"></script>
-            <script type="text/javascript" src="~/js/exceldatascreate.js"></script>
+            <script type="text/javascript" src="~/js/Directives/ImportSheet/importSheetJs.js"></script>
+            <script type="text/javascript" src="~/js/Directives/Pagination/dirPagination.js"></script>
+            <script type="text/javascript" src="~/js/Utils/utils.js"></script>
+            <script type="text/javascript" src="~/js/App/mainApp.js"></script>
+            <script type="text/javascript" src="~/js/App/ExcelUploads/UploadExcel.js"></script>
+            <script type="text/javascript" src="~/js/App/Users/usersManager.js"></script>
             <script src="~/js/site.js" asp-append-version="true"></script>
         </environment>
         <environment exclude="Development">
             <!-- BEGIN VENDOR JS-->
             <script src="~/ConvexTemplate/app-assets/vendors/js/core/jquery-3.3.1.min.js"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.2.13/ng-file-upload.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.core.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.full.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/handsontable@7.0.3/dist/handsontable.full.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/ngHandsontable/0.13.0/ngHandsontable.min.js"></script>
+
             <script src="~/ConvexTemplate/app-assets/vendors/js/core/popper.min.js"></script>
             <script src="~/ConvexTemplate/app-assets/vendors/js/core/bootstrap.min.js"></script>
             <script src="~/ConvexTemplate/app-assets/vendors/js/perfect-scrollbar.jquery.min.js"></script>
@@ -201,8 +222,13 @@
             <!-- BEGIN PAGE LEVEL JS-->
             <script src="~/ConvexTemplate/app-assets/js/dashboard-ecommerce.js"></script>
             <!-- END PAGE LEVEL JS-->
-            <script type="text/javascript" src="~/js/utils.js"></script>
-            <script type="text/javascript" src="~/js/exceldatascreate.js"></script>
+            <script type="text/javascript" src="~/js/Directives/ImportSheet/importSheetJs.js"></script>
+            <script type="text/javascript" src="~/js/Directives/Pagination/dirPagination.js"></script>
+            <script type="text/javascript" src="~/js/Utils/utils.js"></script>
+            <script type="text/javascript" src="~/js/App/mainApp.js"></script>
+            <script type="text/javascript" src="~/js/App/ExcelUploads/UploadExcel.js"></script>
+            <script type="text/javascript" src="~/js/App/Users/usersManager.js"></script>
+
             <script src="~/js/site.min.js" asp-append-version="true"></script>
         </environment>
         @RenderSection("Scripts", required: false)

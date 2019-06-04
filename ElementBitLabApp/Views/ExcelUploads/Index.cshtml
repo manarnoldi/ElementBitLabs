@@ -1,0 +1,64 @@
+﻿
+<div ng-controller="UploadExcelCtrl as ctrl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading margin-top">
+                    <div class="titleHeader">UPLOAD EXCEL DATA</div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="pull-right">
+                                <a asp-action="Create" class="btn btn-sm btn-success">
+                                    <i class="fa fa-plus-circle"></i>
+                                    Add
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 margin-top">
+                            <table class="table table-bordered table-condensed table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Building Name</th>
+                                        <th>Building Number</th>
+                                        <th>Discipline</th>
+                                        <th>Uploaded By</th>
+                                        <th>Excel Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="data in ctrl.excelDatas">
+                                        <td>{{data.building.buildingName}}</td>
+                                        <td>{{data.building.buildingNumber}}</td>
+                                        <td>{{data.discipline.disciplineName}}</td>
+                                        <td>{{data.applicationUser.userName}}</td>
+                                        <td>{{data.excelName}}</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false">
+                                                    Action
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" ng-click="ctrl.openExcel(data.id)">Update</a>
+                                                    <a class="dropdown-item" ng-click="ctrl.downloadExcel(data.id)">Download</a>
+                                                    <a class="dropdown-item" ng-click="ctrl.deleteExcel(data.id)">Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            @*<dir-pagination-controls boundary-links="true" template-url="./Pagination/dirPagination.js"></dir-pagination-controls>*@
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

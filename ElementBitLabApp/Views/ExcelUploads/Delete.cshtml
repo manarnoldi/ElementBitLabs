@@ -1,0 +1,70 @@
+﻿@model ElementBitLabApp.Domain.ExcelUpload
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ExcelUpload</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ExcelName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ExcelName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Building)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Building.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Discipline)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Discipline.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Edited)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Edited)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ExcelData)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ExcelData)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

@@ -814,6 +814,7 @@
     <Folder Include="Areas\Identity\Services\" />
     <Folder Include="wwwroot\ExcelDownloads\" />
     <Folder Include="wwwroot\ExcelUploads\" />
+    <Folder Include="wwwroot\js\Common\" />
   </ItemGroup>
 
 </Project>

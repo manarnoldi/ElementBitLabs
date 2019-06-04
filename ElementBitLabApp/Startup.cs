@@ -46,7 +46,8 @@ namespace ElementBitLabApp
             {
                 options.Conventions.AuthorizeFolder("/");
                 options.Conventions.AllowAnonymousToPage("/Login");
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            }).AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
+            .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             //services.AddDbContext<ApplicationDbContext>(options =>
             //    options.UseSqlServer(

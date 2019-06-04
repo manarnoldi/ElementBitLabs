@@ -12,7 +12,11 @@ namespace ElementBitLabApp.Data
             : base(options)
         { }
         
-        public DbSet<ExcelData> ExcelDatas { get; set; }
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<Building> Buildings { get; set; }
+        public DbSet<Discipline> Disciplines { get; set; }
+        public DbSet<ExcelUpload> ExcelUploads { get; set; }
         public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken))
         {
             return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);

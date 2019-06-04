@@ -1,0 +1,73 @@
+﻿<div ng-controller="UploadExcelCtrl as ctrl">
+    <section id="horizontal-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="px-3">
+                            <form method="post" name="frm" novalidate>
+                                <div asp-validation-summary="All" class="text-danger"></div>
+                                <div class="form-body">
+                                    <h4 class="form-section">
+                                        <i class="icon-direction"></i>Select Excel Details
+                                    </h4>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="label-control">Client Name</label>
+                                                <select class="form-control" ng-change="ctrl.loadProjects()" ng-model="ctrl.client" ng-options="x.clientName for x in ctrl.clients"></select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="label-control">Project Name</label>
+                                                <select class="form-control" ng-change="ctrl.loadBuildings()" ng-model="ctrl.project" ng-options="x.projectName for x in ctrl.projects"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="label-control">Building Name</label>
+                                                <select class="form-control" ng-model="ctrl.building" ng-options="x.buildingName for x in ctrl.buildings"></select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="label-control">Discipline</label>
+                                                <select class="form-control" ng-model="ctrl.discipline" ng-options="x.disciplineName for x in ctrl.disciplines"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Select File To Upload</label>
+                                                <input type="file" ngf-select="ctrl.SelectFile($file)" multiple="false" class="form-control-file">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="label-control">Excel Name</label>
+                                                <input class="form-control" ng-model="ctrl.ExcelName" placeholder="Input Excel Name" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-actions right">
+                                    <button type="submit" ng-disabled="(!ctrl.ExcelName || !ctrl.building || !ctrl.discipline)" class="btn btn-success"
+                                            ng-click="ctrl.submitFile()">
+                                        <i class="icon-note"></i> Upload Excel File
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,15 @@
+﻿<div ng-controller="UploadExcelCtrl as ctrl">
+    <div class="col-md-12 margin-bottom-md">
+        <button class="btn btn-warning" ng-click="ctrl.uploadUpdatedData()">Submit Table Changes</button>
+    </div>
+    <div class="col-md-12 margin-bottom-md">
+        <hot-table datarows="ctrl.viewData" 
+                   settings="{
+                        licenseKey: 'non-commercial-and-evaluation',
+                        tableClassName: ['table', 'table-hover', 'table-striped']
+                   }">
+            <hot-column ng-repeat="column in ctrl.viewDataCols" title="column.title" data="{{column.data}}" read-only="column.readOnly">
+            </hot-column>
+        </hot-table>
+    </div>
+</div>
